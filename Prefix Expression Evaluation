@@ -30,6 +30,8 @@ int prefix(string s){
                 case'^':
                 st.push(pow(op1,op2));
                 break;
+                default:
+                    break;
             }
         }
     }
