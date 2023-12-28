@@ -1,0 +1,66 @@
+#include <iostream>
+
+using namespace std;
+class node{
+    public:
+    int data;
+    node* next;
+    
+    node(int val){
+        data=val;
+        next=NULL;
+    }
+};
+class intstack{
+    private:
+    node* top;
+    public:
+    intstack(){
+        top=NULL;
+    }
+    ~intstack(){
+        while(!isEmpty()){
+            pop();
+        }
+    }
+    bool isEmpty() const{
+        return top==NULL;
+    }
+    void push(int val){
+        node* n=new node(val);
+        n->next=top;
+        top=n;
+    }
+    void pop(){
+        if(isEmpty()){
+            cout<<"stack underflow!"<<endl;
+            return;
+        }
+        node* temp=top;
+        top=top->next;
+        delete temp;
+    }
+    int peek() const{
+        if(isEmpty()){
+            cout<<"stack is empty!"<<endl;
+            return 0;
+        }
+        return top->data;
+    }
+};
+int main(){
+   intstack is;
+   is.push(1);
+   is.push(2);
+   is.push(3);
+   is.push(4);
+   cout<<"top element: "<<is.peek()<<endl;
+   is.pop();
+   cout<<"top element after pop: "<<is.peek()<<endl;
+   return 0;
+    
+}
+
+OUTPUT:
+top element: 4
+top element after pop: 3
